@@ -57,6 +57,7 @@ void AWarriorHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	checkf(InputConfigDataAsset, TEXT("Forget to assign a valid data asset as input config"))
 	ULocalPlayer* LocalPlayer = GetController<APlayerController>()->GetLocalPlayer();
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(LocalPlayer);
+	check(Subsystem);
 	Subsystem->AddMappingContext(InputConfigDataAsset->DefaultMappingContext, 0);
 	UWarriorInputComponent* WarriorInputComponent = CastChecked<UWarriorInputComponent>(PlayerInputComponent);
 	WarriorInputComponent->BindNativeInputAction(InputConfigDataAsset, WarriorGameplayTags::InputTag_Move, ETriggerEvent::Triggered, this, &AWarriorHeroCharacter::Input_Move);
