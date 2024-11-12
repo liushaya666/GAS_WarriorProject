@@ -7,7 +7,7 @@
 #include "Controllers/WarriorHeroController.h"
 
 AWarriorHeroCharacter* UWarriorHeroGameplayAbility::GetHeroCharacterFromActorInfo()
-{
+ {
 	if (!CachedWarriorHeroCharacter.IsValid())
 	{
 		CachedWarriorHeroCharacter = Cast<AWarriorHeroCharacter>(CurrentActorInfo->AvatarActor);
