@@ -5,6 +5,7 @@
 
 #include "Components/BoxComponent.h"
 #include "WarriorDebugHelper.h"
+#include "WarriorFunctionLibrary.h"
 
 // Sets default values
 AWarriorWeaponBase::AWarriorWeaponBase()
@@ -27,11 +28,10 @@ void AWarriorWeaponBase::OnCollisionBoxBeginOverlap(UPrimitiveComponent* Overlap
 	checkf(WeaponOwningPawn,TEXT("Forget to assign an instigator as the owning pawn for the weapon: %s"),*GetName());
 	if (APawn* HitPawn = Cast<APawn>(OtherActor))
 	{
-		if (WeaponOwningPawn != HitPawn)
+		if (UWarriorFunctionLibrary::IsTargetPawnHostile(WeaponOwningPawn, HitPawn))
 		{
 			OnWeaponHitTarget.ExecuteIfBound(OtherActor);
 		}
-		//TODO: Implement hit check for enemy characters.
 	}
 }
 
@@ -42,11 +42,11 @@ void AWarriorWeaponBase::OnCollisionBoxEndOverlap(UPrimitiveComponent* Overlappe
 	checkf(WeaponOwningPawn,TEXT("Forget to assign an instigator as the owning pawn for the weapon: %s"),*GetName());
 	if (APawn* HitPawn = Cast<APawn>(OtherActor))
 	{
-		if (WeaponOwningPawn != HitPawn)
+		if (UWarriorFunctionLibrary::IsTargetPawnHostile(WeaponOwningPawn, HitPawn))
 		{
+			//OnWeaponHitTarget.ExecuteIfBound(OtherActor);
 			OnWeaponPulledFromTarget.ExecuteIfBound(OtherActor);
 		}
-		//TODO: Implement hit check for enemy characters.
 	}
 }
 
