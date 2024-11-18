@@ -9,10 +9,6 @@
 
 void UEnemyCombatComponent::OnHitTargetActor(AActor* HitActor)
 {
-	if (HitActor)
-	{
-		Debug::Print(GetOwningPawn()->GetActorNameOrLabel() + TEXT("is Hitting") + HitActor->GetActorNameOrLabel());    
-	}
 	if (OverlappedActors.Contains(HitActor))
 	{
 		return;
