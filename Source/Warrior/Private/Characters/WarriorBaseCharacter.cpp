@@ -36,7 +36,7 @@ UPawnUIComponent* AWarriorBaseCharacter::GetPawnUIComponent() const
 	return nullptr;
 }
 
-void AWarriorBaseCharacter::PossessedBy(AController* NewController)
+void AWarriorBaseCharacter::PossessedBy(AController* NewController) 
 {
 	Super::PossessedBy(NewController);
 	if (WarriorAbilitySystemComponent)
