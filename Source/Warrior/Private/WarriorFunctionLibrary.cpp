@@ -122,4 +122,12 @@ bool UWarriorFunctionLibrary::IsVaildBlock(AActor* InAttacker, AActor* InDefende
 	Debug::Print(DebugString, DotResult<-0.3f? FColor::Green : FColor::Red);*/
 	return DotResult < -0.3f; 
 }
+
+bool UWarriorFunctionLibrary::ApplyGameplayEffectSpecHandleToTargetActor(AActor* InInstigator, AActor* InTargetActor, const FGameplayEffectSpecHandle& InSpecHandle)
+{
+	UWarriorAbilitySystemComponent* SourceASC = NativeGetWarriorASCFromActor(InInstigator);
+	UWarriorAbilitySystemComponent* TargetASC = NativeGetWarriorASCFromActor(InTargetActor);
+	FActiveGameplayEffectHandle ActiveGameplayEffectHandle = SourceASC->ApplyGameplayEffectSpecToTarget(*InSpecHandle.Data, TargetASC);
+    return ActiveGameplayEffectHandle.WasSuccessfullyApplied();
+}
  
