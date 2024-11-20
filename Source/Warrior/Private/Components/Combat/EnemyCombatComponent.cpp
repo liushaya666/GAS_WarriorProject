@@ -15,11 +15,10 @@ void UEnemyCombatComponent::OnHitTargetActor(AActor* HitActor)
 		return;
 	}
 	OverlappedActors.AddUnique(HitActor);
-
-	//TODO: Implement block check
+	
 	bool bIsValidBlock = false;
 	const bool bIsPlayerBlocking = UWarriorFunctionLibrary::NativeDoesActorHaveTag(HitActor, WarriorGameplayTags::Player_Status_Blocking);
-	const bool bIsMyAttackingUnblockable = false;
+	const bool bIsMyAttackingUnblockable = UWarriorFunctionLibrary::NativeDoesActorHaveTag(GetOwningPawn(), WarriorGameplayTags::Enemy_Status_Unblockable);
 	if (bIsPlayerBlocking && !bIsMyAttackingUnblockable)
 	{
 		bIsValidBlock = UWarriorFunctionLibrary::IsVaildBlock(GetOwningPawn(), HitActor);
