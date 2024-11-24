@@ -42,6 +42,8 @@ public:
 	virtual void OnHitTargetActor(AActor* HitActor);
 	virtual void OnWeaponPulledFromTargetActor(AActor* InteractedActor);
 protected:
+	virtual void ToggleCurrentEquippedWeaponCollision(bool bShouldEnable);
+	virtual void ToggleBodyCollisionBoxCollision(bool bShouldEnable, EToggleDamageType ToggleDamageType);
 	TArray<AActor*> OverlappedActors;
 private:
 	TMap<FGameplayTag, AWarriorWeaponBase*> CharacterCarriedWeaponMap;
